@@ -1,12 +1,14 @@
-#include <iostream>
+#include "Book.h"
 using namespace std;
-int main() 
+int main()
 {
-	cout << "Bibliotech 2.0 \n" << endl;
-
-	cout << "Menu" << endl;
-	cout << "1. Check all books state" << endl;
-	cout << "2. Borrow book" << endl;
-
-
+	Book b1, b2;
+	b1.title = "Przygody Toma Sawyera";
+	b1.author = "Pizdus Pan";
+	b1.is_borrowed=false;
+	b2.title = "Akademia Pana Kleksa";
+	b2.author = "Kapitan Ameryka";
+	b2.is_borrowed = true;
+	b1.show_book();
+	b2.show_book();
 }
