@@ -22,14 +22,7 @@ void borrowed_books();
 int main()
 {
 	setlocale(LC_CTYPE, "Polish");
-	Book b1, b2;
 	int selector=0;
-	b1.title = "Przygody Toma Sawyera";
-	b1.author = "Pizdus Pan";
-	b1.is_borrowed = false;
-	b2.title = "Akademia Pana Kleksa";
-	b2.author = "Kapitan Ameryka";
-	b2.is_borrowed = true;
 	cout << "Welcome to our online library. To select a particular option type the coresponding number and press ENTER\n" << endl << endl
 		<< "1. The list of all the books\n"
 		<< "2. The list of available books\n"
@@ -70,6 +63,13 @@ void all_books()
 	setlocale(LC_CTYPE, "Polish");
 	cout << "Z pliku sciaga liste ksiazek i wyswietla tytul, autora i stan, w kolorze zielonym lub czerwonym\n"
 		 <<"Aby wrocic wcisnij ESCAPE\n";
+	Book b[18];
+	for (int i = 0; i < 18; i++)
+	{
+		b[i].id = i + 1;
+		b[i].pull_book();
+		b[i].show_book();
+	}
 	switch (a = _getch())
 	{
 		case ESCAPE:
@@ -92,6 +92,16 @@ void available_books()
 	setlocale(LC_CTYPE, "Polish");
 	cout << "Z pliku sciaga liste ksiazek o is_borrowed = 0, to je wyswietla\n"
 		 << "Aby wrocic wcisnij ESCAPE\n";
+	Book b[100];
+	for (int i = 0; i < 100; i++)
+	{
+		b[i].id = i + 1;
+		b[i].pull_book();
+		if (b[i].is_borrowed == "available") {
+			b[i].show_book();
+		}
+
+	}
 	switch (a = _getch())
 	{
 		case ESCAPE:
@@ -114,6 +124,16 @@ void borrowed_books()
 	setlocale(LC_CTYPE, "Polish");
 	cout << "Z pliku œci¹ga liste ksiazek o is_borrowed = 1, to je wyswietla\n"
 	 	 << "Aby wrocic wcisnij ESCAPE\n";
+	Book b[100];
+	for (int i = 0; i < 100; i++)
+	{
+		b[i].id = i + 1;
+		b[i].pull_book();
+		if (b[i].is_borrowed == "borrowed") {
+			b[i].show_book();
+		}
+
+	}
 	switch (a = _getch())
 	{
 		case ESCAPE:

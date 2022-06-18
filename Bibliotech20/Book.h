@@ -9,7 +9,10 @@ class Book
 public:
 	time_t now = time(0);
 	string title, author;
-	bool is_borrowed;
+	string is_borrowed;
+	bool is_borrowed_bool_value;
 	char* date_time = ctime(&now);
+	int id;
 	void show_book();
+	void pull_book();
 };
