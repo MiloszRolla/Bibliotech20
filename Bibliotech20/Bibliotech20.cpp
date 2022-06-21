@@ -1,5 +1,6 @@
 #include "Book.h"
 #include <conio.h>
+#include <Windows.h>
 using namespace std;
 void all_books();
 void available_books();
@@ -90,7 +91,7 @@ void available_books()
 {
 	int a;
 	setlocale(LC_CTYPE, "Polish");
-	cout << "Z pliku sciaga liste ksiazek o is_borrowed = 0, to je wyswietla\n"
+	cout << "To borrow a book press one;\n"
 		 << "Aby wrocic wcisnij ESCAPE\n";
 	Book b[100];
 	for (int i = 0; i < 100; i++)
@@ -108,6 +109,29 @@ void available_books()
 		{
 			system("cls");
 			main(); break;
+		}
+		case ONE:
+		{
+			int a;
+			cout << "What's the ID of the book you'd like to borrow?\n";
+			cin >> a;
+			if (b[a-1].is_borrowed == "available")
+			{
+				b[a-1].is_borrowed = "borrowed";
+				cout << "Thank you for choosing our library.\n";
+				for (int i = 0; i < 100; i++)
+				{
+					if (i == 0)
+						b[i].add_book();
+					else
+						b[i].add_book2();
+				}
+			}
+			else cout << "That book has already been borrowed\n";
+			Sleep(3);
+			system("cls");
+			available_books();
+			break;
 		}
 		default:
 		{

@@ -32,6 +32,38 @@ void Book::pull_book()
         exit(0);
     }
 }
+void Book::add_book()
+{
+    fstream fout;
+    fout.open("books.txt", ios::out);
+
+    if (fout.good() == true)
+    {
+        fout << author << endl << title << endl << is_borrowed<<endl;
+        fout.close();
+    }
+    else
+    {
+        cout << "Plik nie istnieje!";
+        exit(0);
+    }
+}
+void Book::add_book2()
+{
+    fstream fout;
+    fout.open("books.txt", ios::app);
+
+    if (fout.good() == true)
+    {
+        fout << author << endl << title << endl << is_borrowed<<endl;
+        fout.close();
+    }
+    else
+    {
+        cout << "Plik nie istnieje!";
+        exit(0);
+    }
+}
 void Book::show_book()
 {
 

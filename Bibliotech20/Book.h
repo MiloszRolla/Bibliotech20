@@ -15,4 +15,6 @@ public:
 	int id;
 	void show_book();
 	void pull_book();
+	void add_book();
+	void add_book2();
 };
