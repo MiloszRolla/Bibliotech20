@@ -30,6 +30,34 @@ void Book::delete_book(int ID)
 {
 
 }
+void Book::give_id()
+{
+    fstream fout;
+    fout.open("books.txt", ios::in);
+
+    if (fout.good() == true)
+    {
+
+        string linia;
+        int counter = 0;
+        while (getline(fout, linia))
+        {
+            counter++;
+        }
+        fout.close();
+        for (int i = 0; i < counter - 5; i++)
+        {
+            getline(fout, linia);
+            if (i = counter - 6)
+                cout << linia;
+        }
+    }
+    else
+    {
+        cout << "Plik nie istnieje!";
+        exit(0);
+    }
+}
 void Book::pull_book()
 {
     fstream fout;
@@ -82,7 +110,7 @@ void Book::add_book2()
 
     if (fout.good() == true)
     {
-        fout << book_id << endl <<author << endl << title << endl << is_borrowed << endl << name << endl << pesel << endl << date <<endl << endl;
+        fout << book_id << endl <<author << endl << title << endl << is_borrowed << endl << name << endl << pesel << endl << date << endl;
 
         fout.close();
     }
