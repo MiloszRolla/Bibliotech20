@@ -15,14 +15,16 @@ Book::Book()
     name = "0";
     pesel = "0";
 }
-Book::Book(string a, string b, string c)
+Book::Book(string a, string b, string c, string d)
 {
     author = a;
     title = b;
     category = c;
+    book_id = d;
     is_borrowed = "available"; 
     name = "-";
     pesel = "0";
+    date = "01.01.01";
 }
 void Book::delete_book(int ID)
 {
@@ -80,7 +82,7 @@ void Book::add_book2()
 
     if (fout.good() == true)
     {
-        fout << author << endl << title << endl << is_borrowed << endl << name << endl << pesel << endl << date << endl;
+        fout << book_id << endl <<author << endl << title << endl << is_borrowed << endl << name << endl << pesel << endl << date <<endl << endl;
 
         fout.close();
     }

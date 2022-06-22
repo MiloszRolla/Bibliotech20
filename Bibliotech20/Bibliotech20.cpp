@@ -192,7 +192,7 @@ bool password()
 	string password;
 	cout << "Password:\n";
 	cin >> password;
-	if (password == "Bibliotech20")
+	if (password == "Dupa123")
 		return true;
 	else
 		return false;
@@ -205,10 +205,16 @@ void add_delete_book()
 	{
 	case ONE:
 	{
-		string a, b, c;
-		cout << "Type the name of the author, the title and the category of the book\n";
-		cin >> a >> b >> c;
-		Book new_book(a, b, c);
+		string a, b, c, d;
+		cout << "Type the name: ";
+		cin >> a;
+		cout << "Type the author: ";
+		cin >> b;
+		cout << "Type the category: ";
+		cin >> c;
+		cout << "Type the id: ";
+		cin >> d;
+		Book new_book(a, b, c, d);
 		new_book.add_book2();
 
 		break;

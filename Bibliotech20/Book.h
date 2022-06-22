@@ -21,6 +21,6 @@ public:
 	void add_book();
 	void add_book2();
 	Book();
-	Book(string a, string b, string c);
+	Book(string a, string b, string c, string d);
 	void delete_book(int ID);
 };
