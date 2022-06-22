@@ -11,15 +11,10 @@ class Book
 	char* date_time = ctime(&now);
 public:
 
-	string title, author;
 	string title, author, name, pesel, date, book_id;
 	string is_borrowed;
-	string name;
-	double PESEL;
 	string category;
-
 	bool is_borrowed_bool_value;
-
 	int id;
 	void show_book();
 	void pull_book();
