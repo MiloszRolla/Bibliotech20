@@ -64,8 +64,8 @@ void all_books()
 	setlocale(LC_CTYPE, "Polish");
 	cout << "Z pliku sciaga liste ksiazek i wyswietla tytul, autora i stan, w kolorze zielonym lub czerwonym\n"
 		 <<"Aby wrocic wcisnij ESCAPE\n";
-	Book b[18];
-	for (int i = 0; i < 18; i++)
+	Book b[100];
+	for (int i = 0; i < 100; i++)
 	{
 		b[i].id = i + 1;
 		b[i].pull_book();
