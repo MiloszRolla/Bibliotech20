@@ -20,6 +20,7 @@ public:
 	void pull_book();
 	void add_book();
 	void add_book2();
+	void give_id();
 	Book();
 	Book(string a, string b, string c, string d);
 	void delete_book(int ID);

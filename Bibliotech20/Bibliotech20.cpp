@@ -1,12 +1,39 @@
 #include "Book.h"
 #include <conio.h>
 #include <Windows.h>
+#include <fstream>
 using namespace std;
 void all_books();
 void available_books();
 void borrowed_books();
 bool password();
 void add_delete_book();
+void a()
+{
+	fstream fout;
+	fout.open("books.txt", ios::in);
+
+	if (fout.good() == true)
+	{
+
+		string linia;
+		int counter = 0;
+		while (getline(fout, linia))
+		{
+			counter++;
+
+		}
+		int counter2 = 0;
+		while (getline(fout, linia))
+		{
+			counter2++;
+			if (counter2 == counter - 7)
+				cout << linia;
+		}
+
+		fout.close();
+	}
+}
 
 
 #define ESCAPE 27
@@ -36,8 +63,9 @@ int main()
 		{
 			case ONE:
 			{
-				system("cls");
-				all_books();
+				a();
+				//system("cls");
+				//all_books();
 				break;
 			}
 			case TWO:
@@ -75,8 +103,7 @@ int main()
 void all_books()
 {
 	int a;
-	cout << "Z pliku sciaga liste ksiazek i wyswietla tytul, autora i stan, w kolorze zielonym lub czerwonym\n"
-		 <<"Aby wrocic wcisnij ESCAPE\n";
+	cout << "To exit press ESCAPE\n";
 	Book b[100];
 	for (int i = 0; i < 100; i++)
 	{
@@ -103,9 +130,8 @@ void all_books()
 void available_books()
 {
 	int a;
-	setlocale(LC_CTYPE, "Polish");
 	cout << "To borrow a book press one;\n"
-		 << "Aby wrocic wcisnij ESCAPE\n";
+		 << "To go back to main menu press ESCAPE\n";
 	Book b[100];
 	for (int i = 0; i < 100; i++)
 	{
