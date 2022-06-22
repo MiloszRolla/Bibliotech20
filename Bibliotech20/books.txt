@@ -1,9 +1,11 @@
+1
 autor1
 ksiazka1
 borrowed
 Mi³oszek
 01230123
 01.01.22
+2
 autor2
 ksiazka2
 available

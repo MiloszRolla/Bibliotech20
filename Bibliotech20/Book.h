@@ -8,7 +8,7 @@ class Book
 {
 public:
 	time_t now = time(0);
-	string title, author, name, pesel, date;
+	string title, author, name, pesel, date, book_id;
 	string is_borrowed;
 	bool is_borrowed_bool_value;
 	char* date_time = ctime(&now);
