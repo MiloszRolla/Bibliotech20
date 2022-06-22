@@ -16,7 +16,7 @@ Book::Book()
     pesel = "0";
     book_id = "0";
 }
-Book::Book(string a, string b, string c, int d)
+Book::Book(string a, string b, int d)
 {
     author = a;
     title = b;
@@ -26,10 +26,7 @@ Book::Book(string a, string b, string c, int d)
     pesel = "0";
     date = "01.01.01";
 }
-void Book::delete_book(int ID)
-{
 
-}
 
 
 
@@ -58,7 +55,6 @@ void Book::pull_book()
             licznik++;
         }
         fout.close();
-        arrayLength = licznik / 7;
     }
     else
     {
@@ -103,8 +99,8 @@ void Book::show_book()
 {
 
     if (is_borrowed == "borrowed")
-        cout << "  Book Id: " << book_id_int_value << endl<< "  Author: " <<author << "\n" <<"  Title: " << title << "\n" << "  State: " << dye::light_red("Borrowed at: ")
-        << dye::light_red(date_time) <<
+        cout << "  Book Id: " << book_id_int_value << endl<< "  Author: " <<author << "\n" <<"  Title: " << title << "\n" << "  State: " << dye::light_red("Borrowed")
+        <<
         +"  Name: " + name + '\n' + "  Pesel: " + pesel + '\n' + "  Data: " + date + '\n' << endl;
     else if (is_borrowed == "available")
         cout << "  Book Id: " << book_id_int_value << '\n' << "  Author: " << author << "\n" << "  Title: " << title << "\n" << "  State: " <<dye::light_green("Available \n")<< "  Name: " << name << '\n' << "  Pesel: " << pesel << '\n' << "  Data: " << date << '\n' << endl;
