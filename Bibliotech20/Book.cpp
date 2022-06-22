@@ -6,7 +6,28 @@ using std::fstream;
 using std::ios;
 using std::cout;
 using std::endl;
+Book::Book()
+{
+    author = "0";
+    title = "0";
+    category = "0";
+    is_borrowed = "0";
+    name = "0";
+    PESEL = NULL;
+}
+Book::Book(string a, string b, string c)
+{
+    author = a;
+    title = b;
+    category = c;
+    is_borrowed = "available"; 
+    name = "-";
+    PESEL = NULL;
+}
+void Book::delete_book(int ID)
+{
 
+}
 void Book::pull_book()
 {
     fstream fout;
