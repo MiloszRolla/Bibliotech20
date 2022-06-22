@@ -10,8 +10,7 @@ using namespace std;
 class Book
 {
 	public:
-	Book();
-	Book(string a, string b, int d);
+
 	time_t now = time(0);
 	char* date_time = ctime(&now);
 	string title, author, name, pesel, date, book_id;
@@ -24,5 +23,8 @@ class Book
 	void pull_book();
 	void add_book();
 	void add_book2();
+	void give_id();
+	Book();
+	Book(string a, string b, string c, int d);
 	void delete_book(int ID);
 };
