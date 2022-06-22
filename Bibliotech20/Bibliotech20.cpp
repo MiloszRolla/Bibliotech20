@@ -23,9 +23,23 @@ void add_delete_book();
 #define EIGHT 56
 #define NINE 57
 
+int arrayLength;
 
+void countLines() {
+	fstream fout;
+	fout.open("books.txt", ios::in);
+	string linia;
+	int linesCounter = 0;
+	while (getline(fout, linia))
+	{
+		linesCounter++;
+	}
+	arrayLength = linesCounter / 7;
+}
 int main()
 {
+	countLines();
+	cout << arrayLength;
 	setlocale(LC_CTYPE, "Polish");
 	int selector=0;
 	cout << "Welcome to our online library. To select a particular option type the coresponding number and press ENTER\n" << endl << endl
@@ -79,8 +93,8 @@ void all_books()
 {
 	int a;
 	cout << "To exit press ESCAPE\n";
-	Book b[100];
-	for (int i = 0; i < 100; i++)
+	Book *b = new Book [arrayLength];
+	for (int i = 0; i < arrayLength; i++)
 	{
 			b[i].id = i + 1;
 			b[i].pull_book();
@@ -92,6 +106,7 @@ void all_books()
 		{
 			system("cls");
 			main(); break;
+
 		}
 		default:
 		{
@@ -107,8 +122,8 @@ void available_books()
 	int a;
 	cout << "To borrow a book press one;\n"
 		 << "To go back to main menu press ESCAPE\n";
-	Book b[100];
-	for (int i = 0; i < 100; i++)
+	Book* b = new Book[arrayLength];
+	for (int i = 0; i < arrayLength; i++)
 	{
 		b[i].id = i + 1;
 		b[i].pull_book();
@@ -129,7 +144,7 @@ void available_books()
 			int a;
 			cout << "What's the ID of the book you'd like to borrow?\n";
 			cin >> a;
-			for (int i = 0; i < 100; i++)
+			for (int i = 0; i < arrayLength; i++)
 			{
 				if (b[i].book_id_int_value == a)
 				{
@@ -137,7 +152,7 @@ void available_books()
 				{
 					b[i].is_borrowed = "borrowed";
 					cout << "Thank you for choosing our library.\n";
-					for (int i = 0; i < 100; i++)
+					for (int i = 0; i < arrayLength; i++)
 					{
 						if (i == 0)
 							b[i].add_book();
@@ -170,8 +185,8 @@ void borrowed_books()
 	setlocale(LC_CTYPE, "Polish");
 	cout << "This is the list of all the borrowed books\n"
 	 	 << "ATo navigate to main menu press ESCAPE\n";
-	Book b[100];
-	for (int i = 0; i < 100; i++)
+	Book *b = new Book[arrayLength];
+	for (int i = 0; i < arrayLength; i++)
 	{
 		b[i].id = i + 1;
 		b[i].pull_book();

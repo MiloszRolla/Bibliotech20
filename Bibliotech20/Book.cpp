@@ -31,11 +31,12 @@ void Book::delete_book(int ID)
 
 }
 
+
+
 void Book::pull_book()
 {
     fstream fout;
     fout.open("books.txt", ios::in);
-
     if (fout.good() == true)
     {
         int nr_linii = (id - 1) * 7 + 1;
@@ -57,6 +58,7 @@ void Book::pull_book()
             licznik++;
         }
         fout.close();
+        arrayLength = licznik / 7;
     }
     else
     {
