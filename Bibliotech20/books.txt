@@ -8,9 +8,9 @@ Jan Kowalski
 2111
 Potop
 Henryk Sienkiewicz
-borrowed
-Jan Kowalski
-04526918488
+available
+0
+0
 0
 3333
 NARUTO SHIPPUDEN
@@ -19,3 +19,17 @@ available
 0
 0
 0
+1234
+lo
+elo
+available
+-
+0
+
+1234
+asashi
+Naruto
+available
+-
+0
+

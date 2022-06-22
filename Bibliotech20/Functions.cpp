@@ -217,6 +217,16 @@ void add_book()
 			add_book();
 		}
 		id = ida * 1000 + idb * 100 + idc;
+		Book* book = new Book[array_length];
+		for (int i = 0; i < array_length; i++)
+		{
+			if (book[i].book_id_int_value == id) {
+				system("cls");
+				cout << "You passed alredy used id, try agian!" << endl;
+				add_book();
+			}
+		}
+
 		Book new_book(a, b, id);
 		new_book.add_book2();
 		system("cls");
