@@ -26,13 +26,13 @@ available
 -
 0
 01.01.01
+5
 a1
 t1
 available
 -
 0
 01.01.01
-
 71243
 aaautor
 tttilte
@@ -40,7 +40,6 @@ available
 -
 0
 01.01.01
-
 12
 Elo
 23
@@ -48,7 +47,6 @@ available
 -
 0
 01.01.01
-
 1
 1
 23
