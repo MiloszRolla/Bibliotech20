@@ -3,20 +3,10 @@
 #include "color.hpp"
 #include <sstream>
 
-using std::fstream;
-using std::ios;
-using std::cout;
-using std::endl;
-Book::Book()
-{
-    author = "0";
-    title = "0";
-    is_borrowed = "0";
-    name = "0";
-    pesel = "0";
-    book_id = "0";
-}
-Book::Book(string a, string b, string c, int d)
+using namespace std;
+
+
+Book::Book(string a, string b, int d)
 {
     author = a;
     title = b;
@@ -30,9 +20,6 @@ void Book::delete_book(int ID)
 {
 
 }
-
-
-
 void Book::pull_book()
 {
     fstream fout;
@@ -58,11 +45,10 @@ void Book::pull_book()
             licznik++;
         }
         fout.close();
-        arrayLength = licznik / 7;
     }
     else
     {
-        cout << "Plik nie istnieje!";
+        cout << "The file doesn't exist!";
         exit(0);
     }
 }
@@ -78,7 +64,7 @@ void Book::add_book()
     }
     else
     {
-        cout << "Plik nie istnieje!";
+        cout << "The file doesn't exist!";
         exit(0);
     }
 }
@@ -104,8 +90,7 @@ void Book::show_book()
 
     if (is_borrowed == "borrowed")
         cout << "  Book Id: " << book_id_int_value << endl<< "  Author: " <<author << "\n" <<"  Title: " << title << "\n" << "  State: " << dye::light_red("Borrowed at: ")
-        << dye::light_red(date_time) <<
-        +"  Name: " + name + '\n' + "  Pesel: " + pesel + '\n' + "  Data: " + date + '\n' << endl;
+        << dye::light_red(date_time) <<"  Name: " << name << '\n' << "  Pesel: " << pesel << '\n' << "  Data: " << date << '\n' << endl;
     else if (is_borrowed == "available")
         cout << "  Book Id: " << book_id_int_value << '\n' << "  Author: " << author << "\n" << "  Title: " << title << "\n" << "  State: " <<dye::light_green("Available \n")<< "  Name: " << name << '\n' << "  Pesel: " << pesel << '\n' << "  Data: " << date << '\n' << endl;
 }
