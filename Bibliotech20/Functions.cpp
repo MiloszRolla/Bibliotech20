@@ -66,7 +66,8 @@ void available_books()
 				{
 					b[i].is_borrowed = "borrowed";
 					cout << "Type in your name: ";
-					cin >> b[i].name;
+					cin.ignore();
+					getline(cin, b[i].name);
 					cout << "Type in your PESEL number: ";
 					cin >> b[i].pesel;
 					cout << "Thank you for choosing our library.\n";
@@ -101,6 +102,7 @@ void borrowed_books()
 {
 	int a;
 	cout << "This is the list of all the borrowed books\n"
+		<<"To return a book press one\n"
 		<< "To navigate to main menu press ESCAPE\n";
 	Book* b = new Book[array_length];
 	for (int i = 0; i < array_length; i++)
@@ -114,6 +116,34 @@ void borrowed_books()
 	}
 	switch (a = _getch())
 	{
+		case ONE:
+		{
+			int a;
+			cout << "Which book would you like to return?\n";
+			cin >> a;
+			for (int i = 0; i < array_length; i++)
+			{
+				if (b[i].book_id_int_value == a)
+				{
+					if (b[i].is_borrowed == "borrowed")
+					{
+						b[i].is_borrowed = "available";
+						b[i].name = "0";
+						b[i].pesel = "0";
+						cout << "Thank you for choosing our library.\n";
+						for (int i = 0; i < array_length; i++)
+						{
+							if (i == 0)
+								b[i].add_book();
+							else
+								b[i].add_book2();
+						}
+					}
+					else if (b[i].is_borrowed == "available")
+						cout << "That book has already been returned or it was not borrowed\n";
+				}
+			}
+		}
 		case ESCAPE:
 		{
 			system("cls");
@@ -156,10 +186,12 @@ void add_book()
 	{
 		string a, b, c;
 		int id{}, ida, idb, idc;
-		cout << "Type the name: ";
-		cin >> a;
+		cout << "Type the name: \n";
+		cin.ignore();
+		getline(cin, a);
 		cout << "Type the author: ";
-		cin >> b;
+		cin.ignore();
+		getline(cin, b);
 		cout << "Type the first number of the ID (it represents category of the book): ";
 		cin >> ida;
 		if (ida > 9 || ida > 1)

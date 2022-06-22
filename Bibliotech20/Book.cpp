@@ -24,7 +24,7 @@ Book::Book(string a, string b, int d)
     book_id_int_value = d;
     name = "-";
     pesel = "0";
-    date = "01.01.01";
+
 }
 
 
@@ -69,7 +69,7 @@ void Book::add_book()
 
     if (fout.good() == true)
     {
-        fout <<book_id_int_value<<endl<< author << endl << title << endl << is_borrowed<<endl << name << endl << pesel << endl << date << endl;
+        fout <<book_id_int_value<<endl<< title << endl << author << endl << is_borrowed<<endl << name << endl << pesel << endl << date << endl;
         fout.close();
     }
     else
@@ -85,7 +85,7 @@ void Book::add_book2()
 
     if (fout.good() == true)
     {
-        fout << book_id_int_value << endl <<author << endl << title << endl << is_borrowed << endl << name << endl << pesel << endl << date << endl;
+        fout << book_id_int_value << endl <<title << endl << author << endl << is_borrowed << endl << name << endl << pesel << endl << date << endl;
 
         fout.close();
     }
@@ -99,11 +99,14 @@ void Book::show_book()
 {
 
     if (is_borrowed == "borrowed")
-        cout << "  Book Id: " << book_id_int_value << endl<< "  Author: " <<author << "\n" <<"  Title: " << title << "\n" << "  State: " << dye::light_red("Borrowed")
+        cout << "  Book Id: " << book_id_int_value << endl << "  Author: " << author << "\n" << "  Title: " << title << "\n" << "  State: " << dye::light_red("Borrowed") << endl
         <<
-        +"  Name: " + name + '\n' + "  Pesel: " + pesel + '\n' + "  Data: " + date + '\n' << endl;
-    else if (is_borrowed == "available")
-        cout << "  Book Id: " << book_id_int_value << '\n' << "  Author: " << author << "\n" << "  Title: " << title << "\n" << "  State: " <<dye::light_green("Available \n")<< "  Name: " << name << '\n' << "  Pesel: " << pesel << '\n' << "  Data: " << date << '\n' << endl;
+        +"  Name: " + name + '\n' + "  Pesel: " + pesel + '\n' << endl;
+    else show_available();
+}
+void Book::show_available()
+{
+    cout << "  Book Id: " << book_id_int_value << '\n' << "  Author: " << author << "\n" << "  Title: " << title << "\n" << "  State: " << dye::light_green("Available \n")<<endl;
 }
 void Book::convert_to_int()
 {
