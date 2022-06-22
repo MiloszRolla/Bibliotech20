@@ -1,6 +1,7 @@
 #include "Book.h"
 #include <fstream>
 #include "color.hpp"
+#include <sstream>
 
 using std::fstream;
 using std::ios;
@@ -10,18 +11,17 @@ Book::Book()
 {
     author = "0";
     title = "0";
-    category = "0";
     is_borrowed = "0";
     name = "0";
     pesel = "0";
+    book_id = "0";
 }
-Book::Book(string a, string b, string c, string d)
+Book::Book(string a, string b, string c, int d)
 {
     author = a;
     title = b;
-    category = c;
-    book_id = d;
-    is_borrowed = "available"; 
+    is_borrowed = "available";
+    book_id_int_value = d;
     name = "-";
     pesel = "0";
     date = "01.01.01";
@@ -70,7 +70,11 @@ void Book::pull_book()
         int licznik = 1;
         while (getline(fout, linia))
         {
-            if (licznik == nr_linii)  book_id = linia;
+            if (licznik == nr_linii)
+            {
+                book_id = linia;
+                convert_to_int();
+            }
             if (licznik == nr_linii + 1) title= linia;
             if (licznik == nr_linii + 2) author = linia;
             if (licznik == nr_linii + 3) is_borrowed = linia;
@@ -94,7 +98,7 @@ void Book::add_book()
 
     if (fout.good() == true)
     {
-        fout << author << endl << title << endl << is_borrowed<<endl << name << endl << pesel << endl << date << endl;
+        fout <<book_id_int_value<<endl<< author << endl << title << endl << is_borrowed<<endl << name << endl << pesel << endl << date << endl;
         fout.close();
     }
     else
@@ -110,7 +114,7 @@ void Book::add_book2()
 
     if (fout.good() == true)
     {
-        fout << book_id << endl <<author << endl << title << endl << is_borrowed << endl << name << endl << pesel << endl << date << endl;
+        fout << book_id_int_value << endl <<author << endl << title << endl << is_borrowed << endl << name << endl << pesel << endl << date << endl;
 
         fout.close();
     }
@@ -124,9 +128,16 @@ void Book::show_book()
 {
 
     if (is_borrowed == "borrowed")
-        cout << "  Book Id: " + book_id + '\n' + "  Author: " + author + "\n" + "  Title: " + title + "\n" + "  State: " + dye::light_red("Borrowed at: ")
+        cout << "  Book Id: " << book_id_int_value << endl<< "  Author: " <<author << "\n" <<"  Title: " << title << "\n" << "  State: " << dye::light_red("Borrowed at: ")
         << dye::light_red(date_time) <<
         +"  Name: " + name + '\n' + "  Pesel: " + pesel + '\n' + "  Data: " + date + '\n' << endl;
     else if (is_borrowed == "available")
-        cout << "  Book Id: " + book_id + '\n' + "  Author: " + author + "\n" + "  Title: " + title + "\n" + "  State: " <<dye::light_green("Available \n")<< "  Name: " + name + '\n' + "  Pesel: " + pesel + '\n' + "  Data: " + date + '\n' << endl;
+        cout << "  Book Id: " << book_id_int_value << '\n' << "  Author: " << author << "\n" << "  Title: " << title << "\n" << "  State: " <<dye::light_green("Available \n")<< "  Name: " << name << '\n' << "  Pesel: " << pesel << '\n' << "  Data: " << date << '\n' << endl;
+}
+void Book::convert_to_int()
+{
+    stringstream ss;
+    ss << book_id;
+    ss >> book_id_int_value;
+
 }

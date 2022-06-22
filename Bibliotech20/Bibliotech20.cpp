@@ -8,32 +8,7 @@ void available_books();
 void borrowed_books();
 bool password();
 void add_delete_book();
-void a()
-{
-	fstream fout;
-	fout.open("books.txt", ios::in);
 
-	if (fout.good() == true)
-	{
-
-		string linia;
-		int counter = 0;
-		while (getline(fout, linia))
-		{
-			counter++;
-
-		}
-		int counter2 = 0;
-		while (getline(fout, linia))
-		{
-			counter2++;
-			if (counter2 == counter - 7)
-				cout << linia;
-		}
-
-		fout.close();
-	}
-}
 
 
 #define ESCAPE 27
@@ -63,9 +38,9 @@ int main()
 		{
 			case ONE:
 			{
-				a();
-				//system("cls");
-				//all_books();
+				
+				system("cls");
+				all_books();
 				break;
 			}
 			case TWO:
@@ -107,9 +82,9 @@ void all_books()
 	Book b[100];
 	for (int i = 0; i < 100; i++)
 	{
-		b[i].id = i + 1;
-		b[i].pull_book();
-		b[i].show_book();
+			b[i].id = i + 1;
+			b[i].pull_book();
+			if ((b[i].is_borrowed == "borrowed" || b[i].is_borrowed == "available"))b[i].show_book();
 	}
 	switch (a = _getch())
 	{
@@ -154,19 +129,27 @@ void available_books()
 			int a;
 			cout << "What's the ID of the book you'd like to borrow?\n";
 			cin >> a;
-			if (b[a-1].is_borrowed == "available")
+			for (int i = 0; i < 100; i++)
 			{
-				b[a-1].is_borrowed = "borrowed";
-				cout << "Thank you for choosing our library.\n";
-				for (int i = 0; i < 100; i++)
+				if (b[i].book_id_int_value == a)
 				{
-					if (i == 0)
-						b[i].add_book();
-					else
-						b[i].add_book2();
+				if (b[i].is_borrowed == "available")
+				{
+					b[i].is_borrowed = "borrowed";
+					cout << "Thank you for choosing our library.\n";
+					for (int i = 0; i < 100; i++)
+					{
+						if (i == 0)
+							b[i].add_book();
+						else
+							b[i].add_book2();
+					}
 				}
+				else cout << "That book has already been borrowed\n";
+				}
+
 			}
-			else cout << "That book has already been borrowed\n";
+
 			Sleep(3);
 			system("cls");
 			available_books();
@@ -185,8 +168,8 @@ void borrowed_books()
 {
 	int a;
 	setlocale(LC_CTYPE, "Polish");
-	cout << "Z pliku œci¹ga liste ksiazek o is_borrowed = 1, to je wyswietla\n"
-	 	 << "Aby wrocic wcisnij ESCAPE\n";
+	cout << "This is the list of all the borrowed books\n"
+	 	 << "ATo navigate to main menu press ESCAPE\n";
 	Book b[100];
 	for (int i = 0; i < 100; i++)
 	{
@@ -219,9 +202,16 @@ bool password()
 	cout << "Password:\n";
 	cin >> password;
 	if (password == "Dupa123")
+	{
+		system("cls");
 		return true;
+	}
 	else
+	{
+		system("cls");
 		return false;
+	}
+
 }
 void add_delete_book()
 {
@@ -231,18 +221,43 @@ void add_delete_book()
 	{
 	case ONE:
 	{
-		string a, b, c, d;
+		string a, b, c;
+		int id{}, ida, idb, idc;
 		cout << "Type the name: ";
 		cin >> a;
 		cout << "Type the author: ";
 		cin >> b;
 		cout << "Type the category: ";
 		cin >> c;
-		cout << "Type the id: ";
-		cin >> d;
-		Book new_book(a, b, c, d);
+		cout << "Type the first number of the ID (it represents category of the book): ";
+		cin >> ida;
+		if (ida > 9 || ida>1)
+		{
+			system("cls");
+			cout << "Use a number smaller than 10, but larger than 1\n";
+			add_delete_book();
+		}
+		cout << "Type the second number of the ID (it represents the row that the book is located in): ";
+		cin >> idb;
+		if (idb > 9 || idb < 1)
+		{
+			system("cls");
+			cout << "Use a number smaller than 10, but larger than 1\n";
+			add_delete_book();
+		}
+		cout << "Type the last two numbers of the ID: ";
+		cin >> idc;
+		if (idc > 99 || idc < 10)
+		{
+			system("cls");
+			cout << "Use a number smaller than 100, but larger than 10\n";
+			add_delete_book();
+		}
+		id = ida * 1000 + idb * 100 + idc;
+		Book new_book(a, b, c,id);
 		new_book.add_book2();
-
+		system("cls");
+		add_delete_book();
 		break;
 	}
 	case TWO:
