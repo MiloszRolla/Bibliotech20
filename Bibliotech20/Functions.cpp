@@ -250,7 +250,7 @@ void add_book()
 			if (b[i].book_id_int_value == id)
 			{
 				system("cls");
-				cout << "This number is already taken\n";
+				cout << "This number is already taken!\n";
 				add_book();
 			}
 
