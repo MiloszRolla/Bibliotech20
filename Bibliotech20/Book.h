@@ -2,7 +2,6 @@
 extern int arrayLength;
 #include <iostream>
 #include <String>
-#include <time.h>
 #include <sstream>
 
 using namespace std;

@@ -8,9 +8,9 @@ Jan Kowalski
 2111
 Potop
 Henryk Sienkiewicz
-available
-0
-0
+borrowed
+kurasik
+123121
 0
 3333
 NARUTO SHIPPUDEN
@@ -19,3 +19,17 @@ available
 0
 0
 0
+1231
+da
+dad
+available
+username
+pesel
+date.date
+1244
+s
+
+available
+username
+pesel
+date.date

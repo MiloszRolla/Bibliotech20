@@ -12,7 +12,7 @@ int main()
 		<< "1. The list of all the books\n"
 		<< "2. The list of available books\n"
 		<< "3. The list of borrowed books\n"
-		<< "4. Add or delete a book\n"
+		<< "4. Add a book\n"
 		<< "To borrow a book please isit the list of available books and follow further instructions\n";
 		switch (selector = _getch())
 		{

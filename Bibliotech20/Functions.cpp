@@ -91,13 +91,6 @@ void available_books()
 					available_books();
 				}
 			}
-			else
-			{
-				system("cls");
-				cout << "That book does not exist\n";
-				available_books();
-			}
-
 		}
 		delete[] b;
 		Sleep(3);
