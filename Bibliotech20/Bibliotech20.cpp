@@ -7,7 +7,6 @@ int array_length;
 int main()
 {
 	count_lines();
-	setlocale(LC_CTYPE, "Polish");
 	int selector=0;
 	cout << "Welcome to our online library. To select a particular option type the coresponding number and press ENTER\n" << endl << endl
 		<< "1. The list of all the books\n"

@@ -245,7 +245,14 @@ void add_book()
 		Book* b = new Book[array_length];
 		for (int i = 0; i < array_length; i++)
 		{
+			b[i].id = i + 1;
 			b[i].pull_book();
+			if (b[i].book_id_int_value == id)
+			{
+				system("cls");
+				cout << "This number is already taken\n";
+				add_book();
+			}
 
 		}
 		Book new_book(a, x, id);
