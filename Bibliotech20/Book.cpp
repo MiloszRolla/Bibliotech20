@@ -12,24 +12,22 @@ Book::Book()
     author = "0";
     title = "0";
     is_borrowed = "0";
-    name = "0";
+    name = "username";
     pesel = "0";
     book_id = "0";
 }
-Book::Book(string a, string b, string c, int d)
+Book::Book(string a, string b, int d)
 {
     author = a;
     title = b;
     is_borrowed = "available";
     book_id_int_value = d;
-    name = "-";
-    pesel = "0";
-    date = "01.01.01";
-}
-void Book::delete_book(int ID)
-{
+    name = "username";
+    pesel = "pesel";
+    date = "date.date";
 
 }
+
 
 
 
@@ -39,30 +37,29 @@ void Book::pull_book()
     fout.open("books.txt", ios::in);
     if (fout.good() == true)
     {
-        int nr_linii = (id - 1) * 7 + 1;
-        string linia;
-        int licznik = 1;
-        while (getline(fout, linia))
+        int line_number =(id-1)*7+1;
+        string line;
+        int counter = 1;
+        while (getline(fout, line))
         {
-            if (licznik == nr_linii)
+            if (counter == line_number)
             {
-                book_id = linia;
+                book_id = line;
                 convert_to_int();
             }
-            if (licznik == nr_linii + 1) title= linia;
-            if (licznik == nr_linii + 2) author = linia;
-            if (licznik == nr_linii + 3) is_borrowed = linia;
-            if (licznik == nr_linii + 4) name = linia;
-            if (licznik == nr_linii + 5) pesel = linia;
-            if (licznik == nr_linii + 6) date = linia;
-            licznik++;
+            if (counter == line_number + 1) title= line;
+            if (counter == line_number + 2) author = line;
+            if (counter == line_number + 3) is_borrowed = line;
+            if (counter == line_number + 4) name = line;
+            if (counter == line_number + 5) pesel = line;
+            if (counter == line_number + 6) date = line;
+            counter++;
         }
         fout.close();
-        arrayLength = licznik / 7;
     }
     else
     {
-        cout << "Plik nie istnieje!";
+        cout << "The file does not exist!";
         exit(0);
     }
 }
@@ -73,12 +70,12 @@ void Book::add_book()
 
     if (fout.good() == true)
     {
-        fout <<book_id_int_value<<endl<< author << endl << title << endl << is_borrowed<<endl << name << endl << pesel << endl << date << endl;
+        fout <<book_id_int_value<<endl<< title << endl << author << endl << is_borrowed<<endl << name << endl << pesel << endl << date << endl;
         fout.close();
     }
     else
     {
-        cout << "Plik nie istnieje!";
+        cout << "The file does not exist!";
         exit(0);
     }
 }
@@ -89,13 +86,13 @@ void Book::add_book2()
 
     if (fout.good() == true)
     {
-        fout << book_id_int_value << endl <<author << endl << title << endl << is_borrowed << endl << name << endl << pesel << endl << date << endl;
+        fout << book_id_int_value << endl <<title << endl << author << endl << is_borrowed << endl << name << endl << pesel << endl << date << endl;
 
         fout.close();
     }
     else
     {
-        cout << "Plik nie istnieje!";
+        cout << "The file does not exist!";
         exit(0);
     }
 }
@@ -103,11 +100,14 @@ void Book::show_book()
 {
 
     if (is_borrowed == "borrowed")
-        cout << "  Book Id: " << book_id_int_value << endl<< "  Author: " <<author << "\n" <<"  Title: " << title << "\n" << "  State: " << dye::light_red("Borrowed at: ")
-        << dye::light_red(date_time) <<
-        +"  Name: " + name + '\n' + "  Pesel: " + pesel + '\n' + "  Data: " + date + '\n' << endl;
-    else if (is_borrowed == "available")
-        cout << "  Book Id: " << book_id_int_value << '\n' << "  Author: " << author << "\n" << "  Title: " << title << "\n" << "  State: " <<dye::light_green("Available \n")<< "  Name: " << name << '\n' << "  Pesel: " << pesel << '\n' << "  Data: " << date << '\n' << endl;
+        cout << "  Book Id: " << book_id_int_value << endl << "  Author: " << author << "\n" << "  Title: " << title << "\n" << "  State: " << dye::light_red("Borrowed") << endl
+        <<
+        +"  Name: " + name + '\n' + "  Pesel: " + pesel + '\n' << endl;
+    else show_available();
+}
+void Book::show_available()
+{
+    cout << "  Book Id: " << book_id_int_value << '\n' << "  Author: " << author << "\n" << "  Title: " << title << "\n" << "  State: " << dye::light_green("Available \n")<<endl;
 }
 void Book::convert_to_int()
 {
