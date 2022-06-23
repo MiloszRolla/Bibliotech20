@@ -14,12 +14,15 @@ void all_books()
 		b[i].pull_book();
 		if ((b[i].is_borrowed == "borrowed" || b[i].is_borrowed == "available"))b[i].show_book();
 	}
+	delete[] b;
 	switch (a = _getch())
 	{
 	case ESCAPE:
 	{
 		system("cls");
-		main(); break;
+		main();
+
+		break;
 
 	}
 	default:
@@ -46,6 +49,7 @@ void available_books()
 		}
 
 	}
+
 	switch (a = _getch())
 	{
 	case ESCAPE:
@@ -60,6 +64,7 @@ void available_books()
 		cin >> a;
 		for (int i = 0; i < array_length; i++)
 		{
+
 			if (b[i].book_id_int_value == a)
 			{
 				if (b[i].is_borrowed == "available")
@@ -79,11 +84,22 @@ void available_books()
 							b[i].add_book2();
 					}
 				}
-				else cout << "That book has already been borrowed\n";
+				else
+				{
+					system("cls");
+					cout << "that book is already borrowed\n";
+					available_books();
+				}
+			}
+			else
+			{
+				system("cls");
+				cout << "That book does not exist\n";
+				available_books();
 			}
 
 		}
-
+		delete[] b;
 		Sleep(3);
 		system("cls");
 		available_books();
@@ -91,6 +107,7 @@ void available_books()
 	}
 	default:
 	{
+		delete[] b;
 		system("cls");
 		cout << "You cannot do that :c\n";
 		available_books();
@@ -140,18 +157,25 @@ void borrowed_books()
 						}
 					}
 					else if (b[i].is_borrowed == "available")
+					{
+						system("cls");
 						cout << "That book has already been returned or it was not borrowed\n";
+						borrowed_books();
+					}
+
 				}
 			}
 		}
 		case ESCAPE:
 		{
+			delete[] b;
 			system("cls");
 			main();
 			break;
 		}
 		default:
 		{
+			delete[] b;
 			system("cls");
 			cout << "You cannot do that :c\n";
 			borrowed_books();
@@ -178,23 +202,24 @@ bool password()
 }
 void add_book()
 {
+	
 	int a;
 	cout << "To add a book press 1, to go navigate to main menu press ESCAPE\n";
 	switch (a = _getch())
 	{
 	case ONE:
 	{
-		string a, b, c;
+		string a, x, c;
 		int id{}, ida, idb, idc;
 		cout << "Type the name: \n";
 		cin.ignore();
 		getline(cin, a);
 		cout << "Type the author: ";
 		cin.ignore();
-		getline(cin, b);
+		getline(cin, x);
 		cout << "Type the first number of the ID (it represents category of the book): ";
 		cin >> ida;
-		if (ida > 9 || ida > 1)
+		if (ida > 9 || ida < 1)
 		{
 			system("cls");
 			cout << "Use a number smaller than 10, but larger than 1\n";
@@ -217,17 +242,13 @@ void add_book()
 			add_book();
 		}
 		id = ida * 1000 + idb * 100 + idc;
-		Book* book = new Book[array_length];
+		Book* b = new Book[array_length];
 		for (int i = 0; i < array_length; i++)
 		{
-			if (book[i].book_id_int_value == id) {
-				system("cls");
-				cout << "You passed alredy used id, try agian!" << endl;
-				add_book();
-			}
-		}
+			b[i].pull_book();
 
-		Book new_book(a, b, id);
+		}
+		Book new_book(a, x, id);
 		new_book.add_book2();
 		system("cls");
 		add_book();

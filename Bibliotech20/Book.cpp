@@ -12,7 +12,7 @@ Book::Book()
     author = "0";
     title = "0";
     is_borrowed = "0";
-    name = "0";
+    name = "username";
     pesel = "0";
     book_id = "0";
 }
@@ -22,8 +22,9 @@ Book::Book(string a, string b, int d)
     title = b;
     is_borrowed = "available";
     book_id_int_value = d;
-    name = "-";
-    pesel = "0";
+    name = "username";
+    pesel = "pesel";
+    date = "date.date";
 
 }
 
@@ -36,7 +37,7 @@ void Book::pull_book()
     fout.open("books.txt", ios::in);
     if (fout.good() == true)
     {
-        int nr_linii = (id - 1) * 7 + 1;
+        int nr_linii =(id-1)*7+1;
         string linia;
         int licznik = 1;
         while (getline(fout, linia))

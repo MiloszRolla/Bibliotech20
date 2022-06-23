@@ -19,17 +19,24 @@ available
 0
 0
 0
-1234
-lo
-elo
-available
--
-0
+1111
 
-1234
-asashi
-Naruto
+1
 available
--
-0
+username
+pesel
+date.date
+1111
 
+
+available
+username
+pesel
+date.date
+1112
+aa
+AaaA
+available
+username
+pesel
+date.date
