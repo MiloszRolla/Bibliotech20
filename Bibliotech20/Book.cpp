@@ -37,29 +37,29 @@ void Book::pull_book()
     fout.open("books.txt", ios::in);
     if (fout.good() == true)
     {
-        int nr_linii =(id-1)*7+1;
-        string linia;
-        int licznik = 1;
-        while (getline(fout, linia))
+        int line_number =(id-1)*7+1;
+        string line;
+        int counter = 1;
+        while (getline(fout, line))
         {
-            if (licznik == nr_linii)
+            if (counter == line_number)
             {
-                book_id = linia;
+                book_id = line;
                 convert_to_int();
             }
-            if (licznik == nr_linii + 1) title= linia;
-            if (licznik == nr_linii + 2) author = linia;
-            if (licznik == nr_linii + 3) is_borrowed = linia;
-            if (licznik == nr_linii + 4) name = linia;
-            if (licznik == nr_linii + 5) pesel = linia;
-            if (licznik == nr_linii + 6) date = linia;
-            licznik++;
+            if (counter == line_number + 1) title= line;
+            if (counter == line_number + 2) author = line;
+            if (counter == line_number + 3) is_borrowed = line;
+            if (counter == line_number + 4) name = line;
+            if (counter == line_number + 5) pesel = line;
+            if (counter == line_number + 6) date = line;
+            counter++;
         }
         fout.close();
     }
     else
     {
-        cout << "Plik nie istnieje!";
+        cout << "The file does not exist!";
         exit(0);
     }
 }
@@ -75,7 +75,7 @@ void Book::add_book()
     }
     else
     {
-        cout << "Plik nie istnieje!";
+        cout << "The file does not exist!";
         exit(0);
     }
 }
@@ -92,7 +92,7 @@ void Book::add_book2()
     }
     else
     {
-        cout << "Plik nie istnieje!";
+        cout << "The file does not exist!";
         exit(0);
     }
 }
